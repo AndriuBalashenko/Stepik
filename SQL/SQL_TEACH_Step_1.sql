@@ -340,8 +340,8 @@ _ (подчеркивание)	Любой одиночный символ	SELECT
 
 SELECT title,author
 FROM book
-WHERE title LIKE "_% %" AND title NOT LIKE " % %" AND title NOT LIKE "_% " AND (
-    author LIKE "% _.С.%" OR author LIKE "% С._.%")
+WHERE title LIKE '_% %' AND title NOT LIKE '% %' AND title NOT LIKE '_% ' AND (
+    author LIKE '% _.С.%' OR author LIKE '% С._.%')
 ORDER BY 1;
 
 /*Магазин счёл, что классика уже не пользуется популярностью, поэтому необходимо в выборке:
