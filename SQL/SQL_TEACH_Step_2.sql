@@ -116,3 +116,27 @@ WHERE title <> 'Идиот' AND title <> 'Белая гвардия'
 GROUP BY author
 HAVING SUM(price * amount) > 5000
 ORDER BY SUM(price * amount) DESC;
+
+
+/*
+Сколько стоит одна буква из суммарного кол-ва букв полученных из названия книги авторов,
+отфильтровать по убыванию и вывести то все что > 30
+
++------------------+------------------------+-------------+------------------+
+| author           | count_all_title_letter | total_price | price_one_letter |
++------------------+------------------------+-------------+------------------+
+| Есенин С.А.      | 40                     | 9750.00     | 243.75           |
+| Достоевский Ф.М. | 53                     | 11802.03    | 222.68           |
+| Булгаков М.А.    | 59                     | 4715.47     | 79.92            |
++------------------+------------------------+-------------+------------------+
+*/
+
+SELECT
+    author,
+    SUM(LENGTH(title)) AS count_all_title_letter,
+    SUM(price * amount) AS total_price,
+    round(SUM(price * amount) / SUM(LENGTH(title)), 2) AS price_one_letter
+FROM book
+GROUP BY author
+HAVING price_one_letter > 30
+ORDER BY price_one_letter DESC;
