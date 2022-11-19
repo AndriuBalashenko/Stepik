@@ -12,3 +12,4 @@
 # содержащихся одновременно как в первой строке, так и во второй.
 
 print(set([int(i) for i in input()]) & set([int(i) for i in input()]))
+#print(len((set(input().split())).intersection(set(input().split()))))
