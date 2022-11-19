@@ -159,3 +159,23 @@ FROM book
 WHERE price - (SELECT MIN(price)
 	FROM book) <= 150
 ORDER BY price;
+
+/*
+Вывести информацию (автора, книгу и количество) о тех книгах,
+количество экземпляров которых в таблице book не дублируется.
++---------------+-----------------------+--------+
+| author        | title                 | amount |
++---------------+-----------------------+--------+
+| Булгаков М.А. | Белая гвардия         | 5      |
+| Есенин С.А.   | Стихотворения и поэмы | 15     |
++---------------+-----------------------+--------+
+*/
+
+SELECT author, title, amount
+FROM book
+WHERE amount IN(
+		SELECT amount
+		FROM book
+		GROUP BY amount
+		HAVING COUNT(amount)=1
+		);
